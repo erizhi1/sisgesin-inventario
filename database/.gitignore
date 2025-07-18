@@ -1,1 +1,3 @@
-*.sqlite*
+# *.sqlite*
+# Permitir database.sqlite para facilitar el desarrollo
+!database.sqlite
