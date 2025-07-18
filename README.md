@@ -17,7 +17,7 @@
 ### 🌟 **Stack Tecnológico Moderno**
 - **Backend:** Laravel 10 con API RESTful completa
 - **Frontend:** Vue 3 + Vite + TailwindCSS
-- **Base de datos:** SQLite/MySQL con Eloquent ORM
+- **Base de datos:** SQLite incluida con datos de prueba
 - **Arquitectura:** SPA (Single Page Application) con integración Laravel-Vue
 
 ## ✨ Características Implementadas
@@ -138,7 +138,31 @@ tests/
 - Node.js 18+ y npm
 - Git
 
-### Instalación Completa
+### 🚀 Instalación Rápida (Recomendada)
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/erizhi1/sisgesin-inventario.git
+cd sisgesin-inventario
+
+# Ejecutar instalación automática
+# Windows:
+.\instalacion_rapida.ps1
+
+# Linux/Mac:
+chmod +x instalacion_rapida.sh
+./instalacion_rapida.sh
+```
+
+### 📊 Base de Datos Incluida
+- ✅ **SQLite preconfigurada** con datos de prueba
+- ✅ **12 categorías** de productos
+- ✅ **8 marcas** comerciales  
+- ✅ **3 proveedores** configurados
+- ✅ **2 almacenes** listos para usar
+- ✅ **Sin configuración adicional** requerida
+
+### Instalación Manual
 ```bash
 # 1. Clonar el repositorio
 git clone https://github.com/erizhi1/sisgesin-inventario.git
