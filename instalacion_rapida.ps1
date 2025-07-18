@@ -5,28 +5,37 @@ Write-Host "🚀 INSTALACIÓN RÁPIDA - SISGESIN" -ForegroundColor Cyan
 Write-Host "=================================" -ForegroundColor Cyan
 
 Write-Host ""
-Write-Host "📋 INSTALANDO DEPENDENCIAS..." -ForegroundColor Yellow
+Write-Host "📋 CONFIGURANDO ENTORNO..." -ForegroundColor Yellow
+
+# Configurar PATH para Laragon
+$env:PATH = "C:\laragon\bin\php\php-8.3.16-Win32-vs16-x64;C:\laragon\bin\composer;$env:PATH"
 
 # Verificar si PHP está disponible
-if (Get-Command php -ErrorAction SilentlyContinue) {
+try {
+    $phpVersion = php --version
     Write-Host "✅ PHP encontrado" -ForegroundColor Green
-} else {
+}
+catch {
     Write-Host "❌ PHP no encontrado. Instala PHP primero." -ForegroundColor Red
     exit 1
 }
 
 # Verificar si Composer está disponible
-if (Get-Command composer -ErrorAction SilentlyContinue) {
+try {
+    $composerVersion = composer --version
     Write-Host "✅ Composer encontrado" -ForegroundColor Green
-} else {
+}
+catch {
     Write-Host "❌ Composer no encontrado. Instala Composer primero." -ForegroundColor Red
     exit 1
 }
 
 # Verificar si Node.js está disponible
-if (Get-Command node -ErrorAction SilentlyContinue) {
+try {
+    $nodeVersion = node --version
     Write-Host "✅ Node.js encontrado" -ForegroundColor Green
-} else {
+}
+catch {
     Write-Host "❌ Node.js no encontrado. Instala Node.js primero." -ForegroundColor Red
     exit 1
 }
@@ -39,7 +48,8 @@ Write-Host "📦 Instalando dependencias PHP..." -ForegroundColor White
 composer install --no-interaction --prefer-dist
 
 # Copiar archivo de configuración
-if (!(Test-Path ".env")) {
+$envExists = Test-Path ".env"
+if (-not $envExists) {
     Write-Host "📝 Creando archivo .env..." -ForegroundColor White
     Copy-Item ".env.example" ".env"
 }
@@ -54,9 +64,9 @@ npm install
 
 # Instalar dependencias del frontend
 Write-Host "📦 Instalando dependencias del frontend..." -ForegroundColor White
-Set-Location "frontend"
+Push-Location "frontend"
 npm install
-Set-Location ".."
+Pop-Location
 
 Write-Host ""
 Write-Host "🎉 INSTALACIÓN COMPLETADA" -ForegroundColor Green
@@ -65,7 +75,7 @@ Write-Host "=========================" -ForegroundColor Green
 Write-Host ""
 Write-Host "🚀 PARA INICIAR EL PROYECTO:" -ForegroundColor Yellow
 Write-Host "1. Backend Laravel: php artisan serve" -ForegroundColor White
-Write-Host "2. Frontend Vue 3: cd frontend && npm run dev" -ForegroundColor White
+Write-Host "2. Frontend Vue 3: cd frontend; npm run dev" -ForegroundColor White
 Write-Host "3. Abrir navegador: http://localhost:8000" -ForegroundColor White
 
 Write-Host ""
